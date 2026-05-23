@@ -7,6 +7,7 @@ Find your Kali's IP using the command:
 ip a
 ```
 <img width="650" height="370" alt="image" src="https://github.com/user-attachments/assets/829b2b9a-1745-4163-bef5-826971380392" />
+
 Found Kali's IP: 192.168.56.101
 
 ## Step 2: Find Bluemoon's IP Address
@@ -15,6 +16,7 @@ Find Bluemoon's IP using the command:
 sudo netdiscover -i eth0
 ```
 <img width="652" height="225" alt="image" src="https://github.com/user-attachments/assets/834172c5-cd34-4715-88c8-0603b303dfbd" />
+
 Found Bluemoon's IP: 192.168.56.102
 
 Ping to check connectivity
